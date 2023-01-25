@@ -1,3 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Ubuntu&family=Ubuntu+Mono&display=swap');
+
+/* font-family: 'Poppins', sans-serif;
+font-family: 'Ubuntu', sans-serif;
+font-family: 'Ubuntu Mono', monospace; */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body,
+html {
+  font-family: 'Ubuntu Mono', monospace;
+}
+
+/*header_________________________________________________________*/
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: white;
+}
+
+#logo {
+  position: relative;
+  left: 25%;
+  height: 250px;
+  margin-top: 2%;
+  width: 50%;
+}
+
+/* Section produits proposés à la vente____________________________ */
+section {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  margin: 2%;
+  column-gap: 10px;
+  row-gap: 10px;
+  width: 60%;
+  max-height: 80vh;
+}
+
+.outils {
+  text-align: center;
+  border: 1px solid grey;
+  background-color: rgb(197, 196, 196);
+  padding: 10px;
+  transition: 0.5s;
+}
+
+.outils img {
+  width: 60%;
+  padding-top: 10px;
+
+}
+
+.outils:hover {
+  scale: 1.2;
+}
+
+p.price {
+  font-size: 1.5em;
+  padding: 10px 0;
+}
+
+label {
+  text-align: left;
+  margin: auto 0;
+  font-size: 1.2em;
+}
+
+.quantite {
+  height: 25px;
+  width: 40px;
+  background: #FFB4B4;
+  font-size: 1.2em;
+}
+
+.addButton {
+  padding: 1% 0;
+  margin: 5% 0;
+  width: 45%;
+  font-size: 1.2em;
+}
+.addButton:hover {
+    cursor: pointer;
+  }
+
 #chapeau{
     display: flex;
     justify-content: space-around;
