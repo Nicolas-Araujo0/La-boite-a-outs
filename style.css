@@ -24,8 +24,8 @@ header {
 #logo {
   position: relative;
   left: 25%;
-  height: 250px;
-  margin-top: 2%;
+  height: 200px;
+  margin-top: 1%;
   width: 50%;
 }
 
@@ -39,6 +39,7 @@ section {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(3, 1fr);
+  grid-template-areas: 'h2 h2 h2 input loupe';
   margin: 2%;
   column-gap: 10px;
   row-gap: 10px;
@@ -46,12 +47,37 @@ section {
   max-height: 80vh;
 }
 
+section h2 {
+  grid-area: h2;
+  margin: 0 25%;
+  font-size: 3em;
+  color: rgb(128, 128, 128);
+}
+
+#search {
+  grid-area: input;
+  height: 30px;
+  align-self: center;
+  font-size: 20px;
+}
+
+#loupe {
+  border: none;
+  background-color: white;
+  grid-area: loupe;
+  margin-right: 80%;
+  font-size: 25px;
+}
+
+#loupe:hover {
+  cursor: pointer;
+}
+
 .outils {
   text-align: center;
   border: 1px solid grey;
   background-color: rgb(197, 196, 196);
   padding: 10px;
-
 }
 
 .outils img {
@@ -90,28 +116,6 @@ label {
 }
 
 .addButton:hover {
-  cursor: pointer;
-}
-
-#chapeau {
-  display: flex;
-  justify-content: space-around;
-  border: 1px solid black;
-  margin: 0 5%;
-  font-size: 20px;
-}
-
-#chapeau div {
-  align-self: center;
-}
-
-#chapeau div input:last-child {
-  height: 20px;
-  border: none;
-  background-color: white;
-}
-
-#chapeau div input:last-child:hover {
   cursor: pointer;
 }
 
