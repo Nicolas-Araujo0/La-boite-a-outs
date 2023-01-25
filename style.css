@@ -43,7 +43,6 @@ section {
   margin: 2%;
   column-gap: 10px;
   row-gap: 10px;
-  /* width: 60%; */
   max-height: 80vh;
 }
 
@@ -65,7 +64,7 @@ section h2 {
   border: none;
   background-color: white;
   grid-area: loupe;
-  margin-right: 80%;
+  margin-right: 85%;
   font-size: 25px;
 }
 
@@ -120,11 +119,12 @@ label {
 }
 
 aside {
-  /* margin-left: 70%; */
-  grid-column-start: 2;
-  width: auto;
+  height: 30px;
   position: sticky;
   top: 0;
+  z-index: 11;
+  margin-top: 6.7%;
+  /* width: auto; */
 }
 
 .cartlist {
@@ -133,13 +133,12 @@ aside {
   margin: 4%;
   padding: 2%;
 }
-.cartlist section:first-child{
-    display: flex;
-    flex-direction: column;
-    row-gap: 10px;
-    background-color: #FFB4B4;
-    max-height: 700px;
-    overflow-y: scroll;
+
+.cartlist section:first-child {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  background-color: #FFB4B4;
 }
 
 .ligne {
