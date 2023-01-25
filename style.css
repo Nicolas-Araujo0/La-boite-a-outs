@@ -84,8 +84,8 @@ label {
   font-size: 1.2em;
 }
 .addButton:hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
+}
 
 #chapeau{
     display: flex;
@@ -115,7 +115,7 @@ aside{
     margin: 5%;
     padding: 5%;
 }
-.cartlist section:first-child{
+.cartlist #encadrement{
     display: flex;
     flex-direction: column;
     row-gap: 10px;
