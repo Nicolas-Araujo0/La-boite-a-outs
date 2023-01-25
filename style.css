@@ -30,6 +30,11 @@ header {
 }
 
 /* Section produits proposés à la vente____________________________ */
+main {
+  display: grid;
+  grid-template-columns: 6fr 3fr;
+}
+
 section {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -37,7 +42,7 @@ section {
   margin: 2%;
   column-gap: 10px;
   row-gap: 10px;
-  width: 60%;
+  /* width: 60%; */
   max-height: 80vh;
 }
 
@@ -46,17 +51,17 @@ section {
   border: 1px solid grey;
   background-color: rgb(197, 196, 196);
   padding: 10px;
-  transition: 0.5s;
+
 }
 
 .outils img {
   width: 60%;
   padding-top: 10px;
-
+  transition: 0.5s;
 }
 
-.outils:hover {
-  scale: 1.2;
+.outils img:hover {
+  scale: 1.5;
 }
 
 p.price {
@@ -83,124 +88,149 @@ label {
   width: 45%;
   font-size: 1.2em;
 }
+
 .addButton:hover {
-    cursor: pointer;
-  }
-
-#chapeau{
-    display: flex;
-    justify-content: space-around;
-    border: 1px solid black;
-    margin: 0 5%;
-    font-size: 20px;
-}
-#chapeau div{
-    align-self: center;
-}
-#chapeau div input:last-child{
-    height: 20px;
-    border: none;
-    background-color: white;
-}
-#chapeau div input:last-child:hover{
-    cursor: pointer;
-}
-aside{
-    margin-left: 70%;
+  cursor: pointer;
 }
 
-.cartlist{
-    border: 1px solid black;
-    background-color: rgb(197,196,196);
-    margin: 5%;
-    padding: 5%;
-}
-.cartlist section:first-child{
-    display: flex;
-    flex-direction: column;
-    row-gap: 10px;
-    background-color: #FFB4B4;
-    max-height: 700px;
-    overflow-y: scroll;
+#chapeau {
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid black;
+  margin: 0 5%;
+  font-size: 20px;
 }
 
-.ligne{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid black;
-    
-}
-.ligne button{
-    font-size: 29px;
-    border: none;
-    background-color: transparent;
-}
-.ligne button:hover{
-    cursor: pointer;
-}
-.cubePrice{
-    display: flex;
-    background-color: #E59999;
-    height: 30px;
-    font-size: 1.5em;
-    align-items: center;
-    margin: 0 5px;
-    padding: 3px;
-}
-.article{
-    display: flex;
-    width: 100%;
-    padding: 3% 3%;
-    gap: 15px;
-    
-}
-.article input{
-    width: 30px;
-    height: 20px;
-    border: none;
-    align-self: flex-end;
-}
-.refPrix{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-}
-.refPrix  div:first-child{
-font-weight: 800;
+#chapeau div {
+  align-self: center;
 }
 
-.refPrix div:last-child{
-    display: flex;
-    gap: 20px;
-    align-items: center;
+#chapeau div input:last-child {
+  height: 20px;
+  border: none;
+  background-color: white;
 }
 
-#faut-payer{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+#chapeau div input:last-child:hover {
+  cursor: pointer;
 }
-#faut-payer h2{
-    margin: 10px 0;
+
+aside {
+  /* margin-left: 70%; */
+  grid-column-start: 2;
+  width: auto;
+  position: sticky;
+  top: 0;
 }
-#faut-payer button{
-    font-size: 25px;
-    width: 300px;
-    height: 40px;
-    background-color: lightgreen;
-    border: 1px solid;
+
+.cartlist {
+  border: 1px solid black;
+  background-color: rgb(197, 196, 196);
+  margin: 4%;
+  padding: 2%;
 }
-#faut-payer button:hover{
-    cursor: pointer;
+
+.cartlist section:first-child {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  background-color: #FFB4B4;
+  max-height: 700px;
+  /* overflow-y: scroll; */
 }
-.quantity{
-    width: 25px;
+
+.ligne {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid black;
+  background-color: whitesmoke;
 }
-aside .article img{
-    width: 100px;
+
+.ligne button {
+  font-size: 29px;
+  border: none;
+  background-color: transparent;
 }
-button>img{
-    width: 40px;
+
+.ligne button:hover {
+  cursor: pointer;
+}
+
+.cubePrice {
+  display: flex;
+  background-color: #E59999;
+  height: 30px;
+  font-size: 1.5em;
+  align-items: center;
+  margin: 0 5px;
+  padding: 3px;
+}
+
+.article {
+  display: flex;
+  width: 100%;
+  padding: 3% 3%;
+  gap: 15px;
+
+}
+
+.article input {
+  width: 30px;
+  height: 20px;
+  border: none;
+  align-self: flex-end;
+}
+
+.refPrix {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+
+.refPrix div:first-child {
+  font-weight: 800;
+}
+
+.refPrix div:last-child {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+#faut-payer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+#faut-payer h2 {
+  margin: 10px 10px;
+  font-size: 2em;
+}
+
+#faut-payer button {
+  font-size: 25px;
+  width: 300px;
+  height: 40px;
+  background-color: rgb(144, 238, 185);
+  border: 1px solid;
+  margin: 0 10px;
+}
+
+#faut-payer button:hover {
+  cursor: pointer;
+}
+
+.quantity {
+  width: 25px;
+}
+
+aside .article img {
+  width: 100px;
+}
+
+button>img {
+  width: 40px;
 }
