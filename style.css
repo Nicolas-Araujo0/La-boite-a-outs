@@ -219,6 +219,7 @@ aside h2 {
 #faut-payer h2 {
   margin: 10px 10px;
   font-size: 2em;
+  color: rgba(0, 0, 0, 0.762);
 }
 
 #faut-payer button {
