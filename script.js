@@ -103,14 +103,14 @@ const availableProducts = [{
   price: 16.98,
   quantity: 1
 }
-
-  /*faire idem pour tous les autres articles.
-  const availableProducts est le nom de notre tableau qui contient des objets (c'est à dire nos articles).
-  La syntaxe est des [] pour dire tableau et des {} pour dire objets et des propriétés suivies de : et enfin des valeurs (comme pour les variables). 
-  Faire attention aux virgules à la fin du couple propriété: valeur, et à la fin des {},*/
-
-
 ];
+/*faire idem pour tous les autres articles.
+const availableProducts est le nom de notre tableau qui contient des objets (c'est à dire nos articles).
+La syntaxe est des [] pour dire tableau et des {} pour dire objets et des propriétés suivies de : et enfin des valeurs (comme pour les variables). 
+Faire attention aux virgules à la fin du couple propriété: valeur, et à la fin des {},*/
+
+
+
 
 let SectionElement = document.querySelector("section");// Element parent des div outils
 
@@ -145,15 +145,22 @@ function addProductToCart(i) {
   displayCart();
 
 }
-// parseInt(quantity)
+
+let asidePresent = false;
 
 function displayCart() {
+  if (asidePresent == false) {
+    displayAside()
+  }
+  let asideElement = document.querySelector("#panier");
+  asideElement.innerHTML = ""
   for (let k = 0; k < cart.length; k++) {
     //nombreArticlePanier = document.querySelectorAll(".quantity");
-    let asideElement = document.querySelector("#panier");
-
+    let div = document.createElement("div");
+    div.classList.add("ligne");
+    let div2 = document.createElement("div");
+    div2.classList.add("article");
     let panier = `
-  <div class="ligne">
     <div class="article">
       <img src=${cart[k].imgSrc} alt=${cart[k].imgAlt}>
       <div class="refPrix">
@@ -166,13 +173,52 @@ function displayCart() {
         </div>
       </div>
     </div>
-    <span class="cubePrice">${cart[k].quantity * cart[k].price}</span>
+    <span class="cubePrice">${cart[k].quantity * cart[k].price}€</span>
     <button><img src="./assets/poubelle.webp" alt="supprimer l'article du panier"></button>
-  </div>
   `
-    asideElement.append(panier);
+    div.innerHTML = panier;
+    asideElement.append(div);
+
+    displayTotalAmount()
   }
 }
 
 
 
+function displayTotalAmount() {
+  let priceH2 = document.querySelector("#faut-payer h2");
+  let totalAmount = 0;
+
+  for (let a = 0; a < cart.length; a++) {
+    calculCout = cart[a].quantity * cart[a].price
+    totalAmount += calculCout
+  };
+  priceH2.innerHTML = "Total cart : " + totalAmount + "€";
+}
+
+function displayAside() {
+  let aside = document.createElement("aside")
+  let h2 = document.createElement("h2")
+  h2.textContent = "My cart";
+  let divCar = document.createElement("div")
+  divCar.classList.add("cartlist");
+  let divPanier = document.createElement("div")
+  divPanier.setAttribute("id", "panier")
+
+  let divPayement = document.createElement("div")
+  divPayement.setAttribute("id", "faut-payer")
+  let fph2 = document.createElement("h2")
+  fph2.textContent = "";
+  let button = document.createElement("button");
+  button.textContent = "VALIDER PAYEMENT"
+
+
+  divPayement.append(fph2, button)
+  divCar.append(divPanier, divPayement)
+  aside.append(h2, divCar)
+
+  let main = document.querySelector("main");
+  main.append(aside);
+
+  asidePresent = true;
+}
