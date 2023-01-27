@@ -12,6 +12,98 @@ const availableProducts = [{
   price: 12.00,
   quantity: 1
 },
+{
+  ref: 25112022,
+  imgSrc: "./assets/adjustable-spanner.webp",
+  imgAlt: "adjustable spanner",
+  price: 25.00,
+  quantity: 1
+},
+{
+  ref: 26112022,
+  imgSrc: "./assets/torx-hex-key-clés-6-pans.webp",
+  imgAlt: "torx-hex-key",
+  price: 39.99,
+  quantity: 1
+},
+{
+  ref: 27112022,
+  imgSrc: "./assets/vis-different-sizes.webp",
+  imgAlt: "different sizes of screw",
+  price: 2.00,
+  quantity: 1
+},
+{
+  ref: 28112022,
+  imgSrc: "./assets/marteau.webp",
+  imgAlt: "hammer",
+  price: 26.89,
+  quantity: 1
+},
+{
+  ref: 29112022,
+  imgSrc: "./assets/bubble-level.webp",
+  imgAlt: "bubble level",
+  price: 28.50,
+  quantity: 1
+},
+{
+  ref: 30112022,
+  imgSrc: "./assets/laser-level.webp",
+  imgAlt: "laser level",
+  price: 43.89,
+  quantity: 1
+},
+{
+  ref: 31112022,
+  imgSrc: "./assets/drill-perceuse.webp",
+  imgAlt: "drill",
+  price: 75.95,
+  quantity: 1
+},
+{
+  ref: 32112022,
+  imgSrc: "./assets/wood-drill-bit.webp",
+  imgAlt: "wood drill bit",
+  price: 24.99,
+  quantity: 1
+},
+{
+  ref: 33112022,
+  imgSrc: "./assets/steel-drill-bit.webp",
+  imgAlt: "steel drill bit",
+  price: 26.99,
+  quantity: 1
+},
+{
+  ref: 34112022,
+  imgSrc: "./assets/grinder-meuleuse.webp",
+  imgAlt: "grinder meuleuse",
+  price: 64.69,
+  quantity: 1
+},
+{
+  ref: 35112022,
+  imgSrc: "./assets/steel-sandpaper.webp",
+  imgAlt: "steel sandpaper",
+  price: 16.68,
+  quantity: 1
+},
+{
+  ref: 36112022,
+  imgSrc: "./assets/polishing-sandpaper.webp",
+  imgAlt: "polishing sandpaper",
+  price: 17.95,
+  quantity: 1
+},
+{
+  ref: 37112022,
+  imgSrc: "./assets/nipper-pince-a-bec.webp",
+  imgAlt: "nipper",
+  price: 16.98,
+  quantity: 1
+}
+
   /*faire idem pour tous les autres articles.
   const availableProducts est le nom de notre tableau qui contient des objets (c'est à dire nos articles).
   La syntaxe est des [] pour dire tableau et des {} pour dire objets et des propriétés suivies de : et enfin des valeurs (comme pour les variables). 
@@ -81,4 +173,6 @@ function displayCart() {
     asideElement.append(panier);
   }
 }
+
+
 
