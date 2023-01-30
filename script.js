@@ -119,11 +119,11 @@ function displayAvailableProducts() {
     let divOutils = document.createElement("div");
     divOutils.classList.add("outils");
     let article = `
-    <h4>Ref: ${availableProducts[i].ref}</h4>
+    <h3>Ref: ${availableProducts[i].ref}</h3>
     <img src= ${availableProducts[i].imgSrc} alt= ${availableProducts[i].imgAlt}>
     <p class="price">${availableProducts[i].price}€</p>
     <label>Qté: </label>
-    <input class="quantite" type="number" min="1" max="99" value="1"><br>
+    <input class="quantite" type="number" min="1" max="99" value="1" ><br>
     <button class="addButton" onclick="addProductToCart(${i})">ajouter</button>
     `// est une autre méthode pour createElement
     divOutils.innerHTML = article;
@@ -143,7 +143,6 @@ function addProductToCart(i) {
   productToAdd.quantity = parseInt(nombreOfart[i].value);
   cart.push(productToAdd);
   displayCart();
-
 }
 
 let asidePresent = false;
@@ -152,15 +151,20 @@ function displayCart() {
   if (asidePresent == false) {
     displayAside()
   }
-  let asideElement = document.querySelector("#panier");
-  asideElement.innerHTML = ""
-  for (let k = 0; k < cart.length; k++) {
-    //nombreArticlePanier = document.querySelectorAll(".quantity");
-    let div = document.createElement("div");
-    div.classList.add("ligne");
-    let div2 = document.createElement("div");
-    div2.classList.add("article");
-    let panier = `
+  if (cart == "") {
+    document.querySelector("aside").style.visibility = "hidden";
+    asidePresent = false;
+  } else {
+    document.querySelector("aside").style.visibility = "visible";
+    let asideElement = document.querySelector("#panier");
+    asideElement.innerHTML = ""
+    for (let k = 0; k < cart.length; k++) {
+      //nombreArticlePanier = document.querySelectorAll(".quantity");
+      let div = document.createElement("div");
+      div.classList.add("ligne");
+      let div2 = document.createElement("div");
+      div2.classList.add("article");
+      let panier = `
     <div class="article">
       <img src=${cart[k].imgSrc} alt=${cart[k].imgAlt}>
       <div class="refPrix">
@@ -176,14 +180,29 @@ function displayCart() {
     <span class="cubePrice">${(cart[k].quantity * cart[k].price).toFixed(2)}€</span>
     <button><img src="./assets/poubelle.webp" alt="supprimer l'article du panier"></button>
   `
-    div.innerHTML = panier;
-    asideElement.append(div);
+      div.innerHTML = panier;
 
-    displayTotalAmount()
+      /*creation du button Supprimer avec image et insert it/them inside divElement ligne_________________*/
+      let deleteBtn = document.createElement("button");
+      deleteBtn.setAttribute("alt", "supprimer l'article du panier");
+      let benImg = document.createElement("img");
+      benImg.setAttribute("src", "./assets/poubelle.webp");
+      deleteBtn.append(benImg);
+      div.append(deleteBtn);
+      deleteBtn.addEventListener("click", function () {
+        deleteProduct(k);
+      });
+      asideElement.append(div);
+      displayTotalAmount()
+    }
   }
 }
 
 
+function deleteProduct(k) {
+  cart.splice(k, 1);
+  displayCart();
+}
 
 function displayTotalAmount() {
   let priceH2 = document.querySelector("#faut-payer h2");
@@ -197,25 +216,25 @@ function displayTotalAmount() {
 }
 
 function displayAside() {
-  let aside = document.createElement("aside")
-  let h2 = document.createElement("h2")
+  let aside = document.createElement("aside");
+  let h2 = document.createElement("h2");
   h2.textContent = "My cart";
   let divCar = document.createElement("div")
   divCar.classList.add("cartlist");
   let divPanier = document.createElement("div")
   divPanier.setAttribute("id", "panier")
 
-  let divPayement = document.createElement("div")
-  divPayement.setAttribute("id", "faut-payer")
-  let fph2 = document.createElement("h2")
+  let divPayement = document.createElement("div");
+  divPayement.setAttribute("id", "faut-payer");
+  let fph2 = document.createElement("h2");
   fph2.textContent = "";
   let button = document.createElement("button");
-  button.textContent = "VALIDER PAYEMENT"
+  button.textContent = "VALIDER PAYEMENT";
 
 
-  divPayement.append(fph2, button)
-  divCar.append(divPanier, divPayement)
-  aside.append(h2, divCar)
+  divPayement.append(fph2, button);
+  divCar.append(divPanier, divPayement);
+  aside.append(h2, divCar);
 
   let main = document.querySelector("main");
   main.append(aside);
