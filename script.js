@@ -113,6 +113,7 @@ Faire attention aux virgules à la fin du couple propriété: valeur, et à la f
 
 
 let SectionElement = document.querySelector("section");// Element parent des div outils
+let mainGrid = document.querySelector("main");
 
 function displayAvailableProducts() {
   for (let i = 0; i < availableProducts.length; i++) {
@@ -130,6 +131,8 @@ function displayAvailableProducts() {
     // ajoute des éléments et du txt à la divOutils créée.
     SectionElement.append(divOutils);// ajouter les divOutils à l'élément parent
   }
+  mainGrid.style.display = "grid";
+  mainGrid.style["grid-template-columns"] = "1fr";
 }
 displayAvailableProducts()
 
@@ -149,6 +152,7 @@ let asidePresent = false;
 
 function displayCart() {
   if (asidePresent == false) {
+    mainGrid.style["grid-template-columns"] = "1fr 2fr 1fr ";
     displayAside()
   }
   if (cart == "") {
@@ -178,7 +182,6 @@ function displayCart() {
       </div>
     </div>
     <span class="cubePrice">${(cart[k].quantity * cart[k].price).toFixed(2)}€</span>
-    <button><img src="./assets/poubelle.webp" alt="supprimer l'article du panier"></button>
   `
       div.innerHTML = panier;
 
