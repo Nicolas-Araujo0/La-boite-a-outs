@@ -173,7 +173,7 @@ function displayCart() {
         </div>
       </div>
     </div>
-    <span class="cubePrice">${cart[k].quantity * cart[k].price}€</span>
+    <span class="cubePrice">${(cart[k].quantity * cart[k].price).toFixed(2)}€</span>
     <button><img src="./assets/poubelle.webp" alt="supprimer l'article du panier"></button>
   `
     div.innerHTML = panier;
@@ -193,7 +193,7 @@ function displayTotalAmount() {
     calculCout = cart[a].quantity * cart[a].price
     totalAmount += calculCout
   };
-  priceH2.innerHTML = "Total cart : " + totalAmount + "€";
+  priceH2.innerHTML = "Total cart : " + (totalAmount).toFixed(2) + "€";
 }
 
 function displayAside() {
