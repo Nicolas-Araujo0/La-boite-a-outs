@@ -104,6 +104,16 @@ const availableProducts = [{
   quantity: 1
 }
 ];
+
+let inventaireSearch = ["screwdriver", "screwdriver torque", "spanner", "torx-hex-key", "different sizes of screw", "hammer", "bubble level", "laser level", "drill", "wood drill bit", "steel drill bit", "grinder meuleuse", "steel sandpaper", "polishing sandpaper", "nipper"];
+
+let searchBar = document.querySelector("#search");
+
+searchBar.addEventListener("input", function () {
+  displayAvailableProducts();
+})
+
+
 /*faire idem pour tous les autres articles.
 const availableProducts est le nom de notre tableau qui contient des objets (c'est à dire nos articles).
 La syntaxe est des [] pour dire tableau et des {} pour dire objets et des propriétés suivies de : et enfin des valeurs (comme pour les variables). 
@@ -116,10 +126,16 @@ let SectionElement = document.querySelector("section");// Element parent des div
 let mainGrid = document.querySelector("main");
 
 function displayAvailableProducts() {
+  let sectionElement = document.querySelector("section");
+  sectionElement.innerHTML = "";
+  //sectionElement.innerHTML = ""
   for (let i = 0; i < availableProducts.length; i++) {
-    let divOutils = document.createElement("div");
-    divOutils.classList.add("outils");
-    let article = `
+
+    if (inventaireSearch[i].includes(searchBar.value)) {
+
+      let divOutils = document.createElement("div");
+      divOutils.classList.add("outils");
+      let article = `
     <h3>Ref: ${availableProducts[i].ref}</h3>
     <img src= ${availableProducts[i].imgSrc} alt= ${availableProducts[i].imgAlt}>
     <p class="price">${availableProducts[i].price}€</p>
@@ -127,9 +143,10 @@ function displayAvailableProducts() {
     <input class="quantite" type="number" min="1" max="99" value="1" ><br>
     <button class="addButton" onclick="addProductToCart(${i})">ajouter</button>
     `// est une autre méthode pour createElement
-    divOutils.innerHTML = article;
-    // ajoute des éléments et du txt à la divOutils créée.
-    SectionElement.append(divOutils);// ajouter les divOutils à l'élément parent
+      divOutils.innerHTML = article;
+      // ajoute des éléments et du txt à la divOutils créée.
+      sectionElement.append(divOutils);// ajouter les divOutils à l'élément parent
+    }
   }
   mainGrid.style.display = "grid";
   mainGrid.style["grid-template-columns"] = "1fr";
@@ -140,13 +157,31 @@ let cart = [];
 let nombreOfart = [];
 let nombreArticlePanier = [];
 
+
 function addProductToCart(i) {
   nombreOfart = document.querySelectorAll(".outils input");
   let productToAdd = { ...availableProducts[i] }
   productToAdd.quantity = parseInt(nombreOfart[i].value);
-  cart.push(productToAdd);
+
+
+  if (cart == "") {
+    cart.push(productToAdd)
+  } else {
+    for (let i = 0; i < cart.length; i++) {
+      if (productToAdd.ref == cart[i].ref) {
+        cart[i].quantity += productToAdd.quantity;
+        break;
+      }
+      if (productToAdd.ref != cart[i].ref && i + 1 == cart.length) {
+        cart.push(productToAdd);
+        break;
+      }
+    }
+  }
+
   displayCart();
 }
+
 
 let asidePresent = false;
 
@@ -157,7 +192,6 @@ function displayCart() {
   }
   if (cart == "") {
     document.querySelector("aside").style.visibility = "hidden";
-    asidePresent = false;
   } else {
     document.querySelector("aside").style.visibility = "visible";
     let asideElement = document.querySelector("#panier");
@@ -177,7 +211,7 @@ function displayCart() {
         </div>
         <div>
           <span>${cart[k].price}€</span>
-          <input class="quantity" type="number" value="${cart[k].quantity}" min="1" >
+          <input class="quantity" type="number" value="${cart[k].quantity}" min="1" max="99" maxlength="3">
         </div>
       </div>
     </div>
@@ -195,12 +229,25 @@ function displayCart() {
       deleteBtn.addEventListener("click", function () {
         deleteProduct(k);
       });
+
       asideElement.append(div);
+
+      let selecteur = document.querySelectorAll(".article .refPrix div input")
+      selecteur[k].addEventListener("change", function () {
+        refreshValue(k)
+      });
+
       displayTotalAmount()
     }
   }
 }
 
+function refreshValue(k) {
+  let selecteur = document.querySelectorAll(".article .refPrix div input");
+  selectValue = parseInt(selecteur[k].value);
+  cart[k].quantity = selectValue;
+  displayCart();
+}
 
 function deleteProduct(k) {
   cart.splice(k, 1);
@@ -210,12 +257,13 @@ function deleteProduct(k) {
 function displayTotalAmount() {
   let priceH2 = document.querySelector("#faut-payer h2");
   let totalAmount = 0;
+  let totalArticle = 0;
 
   for (let a = 0; a < cart.length; a++) {
-    calculCout = cart[a].quantity * cart[a].price
-    totalAmount += calculCout
+    totalAmount += cart[a].quantity * cart[a].price;
+    totalArticle += cart[a].quantity;
   };
-  priceH2.innerHTML = "Total cart : " + (totalAmount).toFixed(2) + "€";
+  priceH2.innerHTML = "Total Articles : " + totalArticle + "<br>Total cart : " + (totalAmount).toFixed(2) + "€";
 }
 
 function displayAside() {
@@ -244,3 +292,4 @@ function displayAside() {
 
   asidePresent = true;
 }
+
