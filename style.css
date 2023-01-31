@@ -22,10 +22,8 @@ header {
 }
 
 #logo {
-  width: 200px;
+  width: 150px;
   height: auto;
-  margin-top: 10px;
-  margin-bottom: 20px;
   border: 2px solid rgb(128, 128, 128);
   border-radius: 50%;
 }
@@ -46,21 +44,35 @@ header {
 .banner h1 {
   text-align: center;
   font-size: 3.5em;
+  font-family: 'Ubuntu', sans-serif;
+  letter-spacing: 0.1em;
 }
 
 menu {
-  border: solid 2px rgb(128, 128, 128);
-  background-color: #E59999;
+  border: solid 2px #E59999;
+  background-color: rgb(197, 196, 196);
   margin-bottom: 20px;
+  width: 80%;
+  margin: 0 auto;
 }
 
 menu>ul {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  font-size: 25px;
+  font-size: 2em;
   margin: 10px auto;
   width: 80%;
+}
+
+ul a:hover {
+  color: #E59999;
+  font-weight: bolder;
+}
+
+.produits>a::after {
+  content: " ▼";
+  font-size: 0.8em;
 }
 
 menu>ul>li,
@@ -68,39 +80,98 @@ menu>ul>li,
   list-style-type: none;
 }
 
-.onglet_produits,
+.produits,
 .panier,
 .devis {
   position: relative;
   text-align: center;
+  width: 20%;
 }
 
-#chevron {
+ul li a {
+  text-decoration: none;
+  color: black;
+}
+
+/* #chevron {
   width: 15px;
   height: 20px;
 }
 
 #chevron:hover {
   cursor: pointer;
-}
+} */
 
-.deroulant {
+/* button.deroulant {
   background-color: transparent;
   border: none;
   vertical-align: middle;
-}
+} */
 
-.absolu>li {
+/* .produits img:hover {
+  scale: 1.5;
+} */
+
+menu>ul li .absolu {
+  display: none;
   position: absolute;
-  top: 10px;
-  visibility: hidden;
+  text-align: left;
+  top: 43px;
+  width: 100%;
+  z-index: 1000;
+  font-size: 0.8em;
+  box-shadow: 0px 1px 2px;
+  background-color: rgb(197, 196, 196);
+  padding-left: 20%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  transition: 2s;
 }
 
+/* Titre de section et barre de recherche_________________________ */
+.header_section {
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 80%;
+  margin: 1% auto;
+}
+
+.header_section>h2,
+input#search,
+input#loupe,
+div {
+  flex: 1;
+  margin: 1%;
+}
+
+.header_section>h2 {
+  text-align: start;
+  font-size: 2em;
+  color: rgb(128, 128, 128);
+}
+
+#search {
+  height: 30px;
+}
+
+#loupe {
+  border: none;
+  background-color: white;
+  font-size: 25px;
+  text-align: left;
+}
+
+#loupe:hover {
+  cursor: pointer;
+}
+
+/*___________________________________________________________*/
 main {
   display: grid;
   grid-template-columns: 6fr 3fr;
   width: 80%;
-  margin: 0 auto;
+  margin: 1% auto;
   column-gap: 50px;
 }
 
@@ -109,35 +180,9 @@ section {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  grid-template-areas: 'h2 h2 h2 input loupe';
   column-gap: 10px;
   row-gap: 10px;
   max-height: 80vh;
-}
-
-section h2 {
-  grid-area: h2;
-  margin: 0 25%;
-  font-size: 2em;
-  color: rgb(128, 128, 128);
-}
-
-#search {
-  grid-area: input;
-  height: 30px;
-  align-self: center;
-}
-
-#loupe {
-  border: none;
-  background-color: white;
-  grid-area: loupe;
-  margin-right: 70%;
-  font-size: 25px;
-}
-
-#loupe:hover {
-  cursor: pointer;
 }
 
 .outils {
@@ -178,7 +223,7 @@ label {
 .addButton {
   padding: 1% 0;
   margin: 5% 0;
-  width: 45%;
+  width: 60%;
   font-size: 1.2em;
 }
 
@@ -191,7 +236,7 @@ aside {
   height: 8vh;
   position: sticky;
   z-index: 11;
-  top: 0;
+  top: 25%;
 
 }
 

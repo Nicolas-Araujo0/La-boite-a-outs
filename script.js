@@ -1,125 +1,126 @@
 const availableProducts = [{
   ref: 23112022,
   imgSrc: "./assets/screwdriver-electricity.png",
-  imgAlt: "electric screwdriver",
+  imgAlt: "tournevis plat",
   price: 15.00,
   quantity: 1
 },
 {
   ref: 24112022,
   imgSrc: "./assets/screwdriver-torque.png",
-  imgAlt: "screwdriver torque",
+  imgAlt: "tournevis cruciforme",
   price: 12.00,
   quantity: 1
 },
 {
   ref: 25112022,
   imgSrc: "./assets/adjustable-spanner.webp",
-  imgAlt: "adjustable spanner",
+  imgAlt: "clé à mollette réglable",
   price: 25.00,
   quantity: 1
 },
 {
   ref: 26112022,
   imgSrc: "./assets/torx-hex-key-clés-6-pans.webp",
-  imgAlt: "torx-hex-key",
+  imgAlt: "clé torx-hex",
   price: 39.99,
   quantity: 1
 },
 {
   ref: 27112022,
   imgSrc: "./assets/vis-different-sizes.webp",
-  imgAlt: "different sizes of screw",
+  imgAlt: "vis",
   price: 2.00,
   quantity: 1
 },
 {
   ref: 28112022,
   imgSrc: "./assets/marteau.webp",
-  imgAlt: "hammer",
+  imgAlt: "marteau",
   price: 26.89,
   quantity: 1
 },
 {
   ref: 29112022,
   imgSrc: "./assets/bubble-level.webp",
-  imgAlt: "bubble level",
+  imgAlt: "niveau à bulle",
   price: 28.50,
   quantity: 1
 },
 {
   ref: 30112022,
   imgSrc: "./assets/laser-level.webp",
-  imgAlt: "laser level",
+  imgAlt: "niveau à bulle laser",
   price: 43.89,
   quantity: 1
 },
 {
   ref: 31112022,
   imgSrc: "./assets/drill-perceuse.webp",
-  imgAlt: "drill",
+  imgAlt: "perçeuse",
   price: 75.95,
   quantity: 1
 },
 {
   ref: 32112022,
   imgSrc: "./assets/wood-drill-bit.webp",
-  imgAlt: "wood drill bit",
+  imgAlt: "mèches à bois",
   price: 24.99,
   quantity: 1
 },
 {
   ref: 33112022,
   imgSrc: "./assets/steel-drill-bit.webp",
-  imgAlt: "steel drill bit",
+  imgAlt: "mèches acier",
   price: 26.99,
   quantity: 1
 },
 {
   ref: 34112022,
   imgSrc: "./assets/grinder-meuleuse.webp",
-  imgAlt: "grinder meuleuse",
+  imgAlt: "meuleuse",
   price: 64.69,
   quantity: 1
 },
 {
   ref: 35112022,
   imgSrc: "./assets/steel-sandpaper.webp",
-  imgAlt: "steel sandpaper",
+  imgAlt: "papier de verre acier",
   price: 16.68,
   quantity: 1
 },
 {
   ref: 36112022,
   imgSrc: "./assets/polishing-sandpaper.webp",
-  imgAlt: "polishing sandpaper",
+  imgAlt: "papier de polissage",
   price: 17.95,
   quantity: 1
 },
 {
   ref: 37112022,
   imgSrc: "./assets/nipper-pince-a-bec.webp",
-  imgAlt: "nipper",
+  imgAlt: "pince à bec",
   price: 16.98,
   quantity: 1
 }
 ];
+/*Gestion du menuDeroulant_______________________________________*/
+let menuDeroulant = document.querySelector("menu>ul li .absolu");
+function displayCategoriesProd() {
+  menuDeroulant.style.display = "block";
+}
+function stopDisplayCategories() {
+  menuDeroulant.style.display = "none";
+}
 
-let inventaireSearch = ["screwdriver", "screwdriver torque", "spanner", "torx-hex-key", "different sizes of screw", "hammer", "bubble level", "laser level", "drill", "wood drill bit", "steel drill bit", "grinder meuleuse", "steel sandpaper", "polishing sandpaper", "nipper"];
+
+/*Gestion de la searchBar_______________________________________*/
+let inventaireSearch = ["tournevis plat", "tournevis cruciforme", "clé à mollette réglable", "clé torx-hex", "vis", "marteau", "niveau à bulle", "niveau à bulle laser", "perçeuse", "mèches à bois", "mèches acier", "meuleuse", "papier de verre acier", "papier de polissager", "pince à bec"];
 
 let searchBar = document.querySelector("#search");
-
 searchBar.addEventListener("input", function () {
   displayAvailableProducts();
 })
-
-
-/*faire idem pour tous les autres articles.
-const availableProducts est le nom de notre tableau qui contient des objets (c'est à dire nos articles).
-La syntaxe est des [] pour dire tableau et des {} pour dire objets et des propriétés suivies de : et enfin des valeurs (comme pour les variables). 
-Faire attention aux virgules à la fin du couple propriété: valeur, et à la fin des {},*/
-
-
 
 
 let SectionElement = document.querySelector("section");// Element parent des div outils
@@ -153,17 +154,15 @@ function displayAvailableProducts() {
 }
 displayAvailableProducts()
 
+
 let cart = [];
 let nombreOfart = [];
 let nombreArticlePanier = [];
-
 
 function addProductToCart(i) {
   nombreOfart = document.querySelectorAll(".outils input");
   let productToAdd = { ...availableProducts[i] }
   productToAdd.quantity = parseInt(nombreOfart[i].value);
-
-
   if (cart == "") {
     cart.push(productToAdd)
   } else {
@@ -178,7 +177,6 @@ function addProductToCart(i) {
       }
     }
   }
-
   displayCart();
 }
 
@@ -187,7 +185,7 @@ let asidePresent = false;
 
 function displayCart() {
   if (asidePresent == false) {
-    mainGrid.style["grid-template-columns"] = "1fr 2fr 1fr ";
+    mainGrid.style["grid-template-columns"] = "4fr 2fr";
     displayAside()
   }
   if (cart == "") {
