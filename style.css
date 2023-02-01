@@ -129,7 +129,7 @@ menu>ul li .absolu {
 }
 
 /* Titre de section et barre de recherche_________________________ */
-.header_section {
+/* .header_section {
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;
@@ -149,7 +149,7 @@ div {
   text-align: start;
   font-size: 2em;
   color: rgb(128, 128, 128);
-}
+} */
 
 #search {
   height: 30px;
