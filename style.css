@@ -97,8 +97,8 @@ menu>ul>li,
 }
 
 main {
+  position: relative;
   display: grid;
-  grid-template-columns: 6fr 3fr;
   width: 80%;
   margin: 0 auto;
   column-gap: 50px;
@@ -109,31 +109,37 @@ section {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  grid-template-areas: 'h2 h2 h2 input loupe';
   column-gap: 10px;
   row-gap: 10px;
   max-height: 80vh;
 }
 
-section h2 {
-  grid-area: h2;
-  margin: 0 25%;
+
+#searchTitle{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+#searchTitle h2 {
   font-size: 2em;
-  color: rgb(128, 128, 128);
+  /* color: rgb(128, 128, 128); */
+  color: rgb(0, 0, 0);
+}
+#searchTitle div{
+  display: flex;
 }
 
 #search {
-  grid-area: input;
   height: 30px;
-  align-self: center;
 }
 
 #loupe {
+  background-color: transparent;
   border: none;
-  background-color: white;
-  grid-area: loupe;
-  margin-right: 70%;
-  font-size: 25px;
+  border-left: 1px solid black;
+  font-size: 20px;
+  position: relative;
+  right: 15%;
 }
 
 #loupe:hover {
@@ -163,8 +169,6 @@ p.price {
 }
 
 label {
-  text-align: left;
-  margin: auto 0;
   font-size: 1.2em;
 }
 
@@ -178,7 +182,7 @@ label {
 .addButton {
   padding: 1% 0;
   margin: 5% 0;
-  width: 45%;
+  min-width: 45%;
   font-size: 1.2em;
 }
 
@@ -188,17 +192,20 @@ label {
 
 /* aside MY CART_________________________________________*/
 aside {
-  height: 8vh;
   position: sticky;
-  z-index: 11;
-  top: 0;
-
+  z-index: 2;
+  width: 470px;
 }
+.scrollBar{
+  overflow-y: scroll;
+  max-height: 450px;
+}
+
 
 aside h2 {
   font-size: 3rem;
   padding: 0px;
-  margin: 7px 0 0 20px;
+  margin-left: 20px;
   color: rgb(128, 128, 128);
 }
 
@@ -312,4 +319,59 @@ aside .article img {
 
 button>img {
   width: 40px;
+}
+
+/* Animation cart + shop  */
+.cartAppear{
+  position: relative;
+  animation: moveright 1s;
+}
+.cartRemove{
+  position: relative;
+  animation: removeright 1s;
+}
+.scale{
+  left: 10%;
+  position: fixed;
+  animation: scaleShop 1s;
+}
+.deScale{
+  left: 10%;
+  position: fixed;
+  animation: deScaleShop 1s;
+}
+@keyframes scaleShop{
+  from {
+    width: 80%;
+  }
+  to {
+    width: 121.5%;
+  }
+}
+@keyframes deScaleShop{
+  from {
+    width: 120%;
+  }
+  to {
+    width: 79.5%;
+  }
+}
+
+@keyframes moveright{
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes removeright{
+  from {
+    right: 0;
+    opacity: 1;
+  }
+  to {
+    right: -10%;
+    opacity: 0;
+  }
 }

@@ -139,19 +139,29 @@ function displayAvailableProducts() {
     <h3>Ref: ${availableProducts[i].ref}</h3>
     <img src= ${availableProducts[i].imgSrc} alt= ${availableProducts[i].imgAlt}>
     <p class="price">${availableProducts[i].price}€</p>
-    <label>Qté: </label>
+    <label for="quantite">Qté: </label>
     <input class="quantite" type="number" min="1" max="99" value="1" ><br>
     <button class="addButton" onclick="addProductToCart(${i})">ajouter</button>
     `// est une autre méthode pour createElement
       divOutils.innerHTML = article;
+
+      let quantityInput = divOutils.querySelector("input")
+      quantityInput.addEventListener("input", function () {
+        availableProducts[i].quantity = parseInt(quantityInput.value);
+      })
       // ajoute des éléments et du txt à la divOutils créée.
       sectionElement.append(divOutils);// ajouter les divOutils à l'élément parent
     }
   }
-  mainGrid.style.display = "grid";
-  mainGrid.style["grid-template-columns"] = "1fr";
+
+  if (asidePresent == false || document.querySelector("aside").style.visibility == "hidden") {
+    mainGrid.style["grid-template-columns"] = "1fr";
+
+  } else {
+    mainGrid.style["grid-template-columns"] = "2fr 1fr";
+  }
 }
-displayAvailableProducts()
+
 
 let cart = [];
 let nombreOfart = [];
@@ -159,10 +169,10 @@ let nombreArticlePanier = [];
 
 
 function addProductToCart(i) {
-  nombreOfart = document.querySelectorAll(".outils input");
-  let productToAdd = { ...availableProducts[i] }
-  productToAdd.quantity = parseInt(nombreOfart[i].value);
 
+  //nombreOfart = document.querySelectorAll(".outils input");
+  let productToAdd = { ...availableProducts[i] }
+  //productToAdd.quantity = parseInt(nombreOfart[i].value);
 
   if (cart == "") {
     cart.push(productToAdd)
@@ -179,23 +189,62 @@ function addProductToCart(i) {
     }
   }
 
+  availableProducts[i].quantity = 1;
+  displayAvailableProducts()
   displayCart();
+}
+
+function cartAppear() {
+  let asideSelect = document.querySelector("aside");
+  asideSelect.classList.add("cartAppear");
+
+  let shop = document.querySelector("main");
+  shop.classList.add("deScale")
+  setTimeout(() => {
+    asideSelect.classList.remove("cartAppear");
+
+    shop.classList.remove("deScale")
+  }, 1000);
+}
+function cartRemove() {
+  let asideSelect = document.querySelector("aside")
+  asideSelect.classList.add("cartRemove")
+
+  let shop = document.querySelector("main");
+  shop.classList.add("scale")
+  setTimeout(() => {
+    asideSelect.classList.remove("cartRemove");
+
+    shop.classList.remove("scale")
+  }, 1000);
 }
 
 
 let asidePresent = false;
+let showAnimation = true;
+
 
 function displayCart() {
   if (asidePresent == false) {
-    mainGrid.style["grid-template-columns"] = "1fr 2fr 1fr ";
     displayAside()
   }
   if (cart == "") {
-    document.querySelector("aside").style.visibility = "hidden";
+    cartRemove();
+    setTimeout(() => {
+      mainGrid.style["grid-template-columns"] = "1fr";
+      document.querySelector("aside").style.visibility = "hidden";
+    }, 1000);
+    showAnimation = true;
+
   } else {
     document.querySelector("aside").style.visibility = "visible";
+    mainGrid.style["grid-template-columns"] = "2fr 1fr";
     let asideElement = document.querySelector("#panier");
     asideElement.innerHTML = ""
+    if (showAnimation == true) {
+      cartAppear()
+    }
+    showAnimation = false;
     for (let k = 0; k < cart.length; k++) {
       //nombreArticlePanier = document.querySelectorAll(".quantity");
       let div = document.createElement("div");
@@ -236,8 +285,8 @@ function displayCart() {
       selecteur[k].addEventListener("change", function () {
         refreshValue(k)
       });
-
       displayTotalAmount()
+      panierScrollbar()
     }
   }
 }
@@ -289,7 +338,18 @@ function displayAside() {
 
   let main = document.querySelector("main");
   main.append(aside);
-
   asidePresent = true;
 }
+
+
+function panierScrollbar() {
+  const panierS = document.querySelector("#panier");
+  let asideHeight = panierS.offsetHeight
+  if (asideHeight >= 450) {
+    panierS.classList.add("scrollBar")
+  } else if (asideHeight <= 450 && panierS.classList.contains("scrollBar")) {
+    panierS.classList.remove("scrollBar")
+  }
+}
+displayAvailableProducts()
 
