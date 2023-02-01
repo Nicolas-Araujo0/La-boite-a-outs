@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La-boite-a-outs</title>
+    <title>La Boite A Outs</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -15,23 +15,27 @@
             <div>
                 <img id="logo" src="./assets/logo-carre-width-220.webp" alt="logo">
             </div>
-            <h1>La Boite à Outs</h1>
+            <h1>La Boîte à Outs</h1>
             <div></div>
         </div>
         <menu type="toolbar">
             <ul>
-                <li class="onglet_produits relatif">Produits
-                    <button class="deroulant" type="submit"><img id="chevron"
-                            src="./assets/chevron-onglet.webp" alt="sous-onglets"></button>
-
+                <li class="produits relatif" onmouseover="displayCategoriesProd()">
+                    <a href="#">Produits</a>
+                    <!-- <button class="deroulant" type="submit"><img id="chevron"
+                            src="./assets/chevron-onglet.webp"></button> -->
                     <ul class="ul absolu">
-                        <li><a href="http://" target="_blank" rel="noopener noreferrer"></a> Outillage</li>
-                        <li>Quincaillerie</li>
-                        <li>Materiau-Gros oeuvre</li>
+                        <li onmouseover="displayCategoriesProd()" onmouseout="stopDisplayCategories()"><a
+                                href="index.html">Outillage</a></li>
+                        <li onmouseover="displayCategoriesProd()" onmouseout="stopDisplayCategories()"><a
+                                href="#">Quincaillerie</a></li>
+                        <li onmouseover="displayCategoriesProd()" onmouseout="stopDisplayCategories()"><a
+                                href="#">Gros-oeuvre</a></li>
                     </ul>
                 </li>
-                <li class="panier">Panier</li>
-                <li class="devis">Devis pro</li>
+                <li class="panier"><a href="#" onclick="displayCart()">Panier</a>
+                </li>
+                <li class="devis"><a href="#">Devis pro</a></li>
             </ul>
         </menu>
     </header>
