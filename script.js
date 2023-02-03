@@ -376,6 +376,7 @@ function displayDevis() {
   tdMontant.textContent = "Montant TTC à régler: "
   tdTotalPrice.textContent = totalAmount.toFixed(2) + "€";
   tdTotalQty.textContent = totalQty;
+  trContent = "";
 }
 
 

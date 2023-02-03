@@ -49,7 +49,7 @@ header {
   letter-spacing: 0.1em;
 }
 
-menu {
+nav {
   border: solid 2px #E59999;
   background-color: rgb(197, 196, 196);
   margin-bottom: 20px;
@@ -58,7 +58,7 @@ menu {
   border-radius: 8px;
 }
 
-menu>ul {
+nav>ul {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -77,7 +77,7 @@ ul a:hover {
   font-size: 0.8em;
 }
 
-menu>ul>li,
+nav>ul>li,
 .absolu>li {
   list-style-type: none;
 }
@@ -119,7 +119,7 @@ ul li a {
   scale: 1.5;
 } */
 
-menu>ul li .absolu {
+nav>ul li .absolu {
   display: none;
   position: absolute;
   text-align: left;
@@ -451,12 +451,13 @@ button>img {
   background-color: rgba(211, 211, 211, 0.200);
 } */
 
-#payementDiv{
+#payementDiv {
   display: flex;
   margin: 0 15%;
   justify-content: space-around;
 }
-#position{
+
+#position {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -464,7 +465,8 @@ button>img {
   height: 70vh;
 
 }
-fieldset{
+
+fieldset {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -475,65 +477,79 @@ fieldset{
   row-gap: 5px;
   font-size: 18px;
 }
-fieldset input{
+
+fieldset input {
   height: 25px;
   width: 200px;
   border-radius: 5px;
 }
-fieldset>div{
+
+fieldset>div {
   display: flex;
 
 }
-.flexColumn{
+
+.flexColumn {
   display: flex;
   align-items: center;
 }
-#monthExpiration{
+
+#monthExpiration {
   width: 120px;
 }
-#codeSecurity{
+
+#codeSecurity {
   width: 60px;
 }
-#submit{
+
+#submit {
   width: 80px;
   min-height: 25px;
   align-self: end;
   cursor: pointer;
   margin-top: 10px;
 }
-#submit:hover{
+
+#submit:hover {
   background-color: white;
   transition: .5s;
 }
 
-fieldset label{
+fieldset label {
   padding: 5px 5px 0;
 }
-#sendMail{
+
+#sendMail {
   width: 20px;
-  
+
 }
-#validateRight{
+
+#validateRight {
   width: 20px;
 }
-fieldset label span{
+
+fieldset label span {
   font-style: italic;
   font-size: 8px;
 }
-#displayPassword{
+
+#displayPassword {
   position: relative;
   left: -5%;
   background-color: transparent;
 
 }
-#displayPassword:hover{
+
+#displayPassword:hover {
   cursor: pointer;
 }
-#passwordCheck{
+
+#passwordCheck {
   position: relative;
   left: 5%;
 }
-#mailadress ,
+
+#mailadress,
 #cardNumberText {
   min-height: 25px;
 }
