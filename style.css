@@ -446,3 +446,95 @@ button>img {
     opacity: 0;
   }
 }
+
+/* FORMULAIRE */
+/* #coloredBackground{
+  background-color: rgba(211, 211, 211, 0.200);
+} */
+
+#payementDiv{
+  display: flex;
+  margin: 0 15%;
+  justify-content: space-around;
+}
+#position{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45%;
+  height: 70vh;
+
+}
+fieldset{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25vw;
+  height: 50vh;
+  padding: 5% 10%;
+  background-color: rgb(211, 211, 211);
+  row-gap: 5px;
+  font-size: 18px;
+}
+fieldset input{
+  height: 25px;
+  width: 200px;
+  border-radius: 5px;
+}
+fieldset>div{
+  display: flex;
+
+}
+.flexColumn{
+  display: flex;
+  align-items: center;
+}
+#monthExpiration{
+  width: 120px;
+}
+#codeSecurity{
+  width: 60px;
+}
+#submit{
+  width: 80px;
+  min-height: 25px;
+  align-self: end;
+  cursor: pointer;
+  margin-top: 10px;
+}
+#submit:hover{
+  background-color: white;
+  transition: .5s;
+}
+
+fieldset label{
+  padding: 5px 5px 0;
+}
+#sendMail{
+  width: 20px;
+  
+}
+#validateRight{
+  width: 20px;
+}
+fieldset label span{
+  font-style: italic;
+  font-size: 8px;
+}
+#displayPassword{
+  position: relative;
+  left: -5%;
+  background-color: transparent;
+
+}
+#displayPassword:hover{
+  cursor: pointer;
+}
+#passwordCheck{
+  position: relative;
+  left: 5%;
+}
+#mailadress ,
+#cardNumberText {
+  min-height: 25px;
+}

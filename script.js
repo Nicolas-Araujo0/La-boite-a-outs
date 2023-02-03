@@ -115,7 +115,6 @@ function stopDisplayCategories() {
 
 
 /*Gestion de la searchBar_______________________________________*/
-let inventaireSearch = ["tournevis plat", "tournevis cruciforme", "clé à mollette réglable", "clé torx-hex", "vis", "marteau", "niveau à bulle", "niveau à bulle laser", "perçeuse", "mèches à bois", "mèches acier", "meuleuse", "papier de verre acier", "papier de polissager", "pince à bec"];
 
 let searchBar = document.querySelector("#search");
 searchBar.addEventListener("input", function () {
@@ -132,7 +131,7 @@ function displayAvailableProducts() {
   //sectionElement.innerHTML = ""
   for (let i = 0; i < availableProducts.length; i++) {
 
-    if (inventaireSearch[i].includes(searchBar.value)) {
+    if (availableProducts[i].imgAlt.includes(searchBar.value)) {
 
       let divOutils = document.createElement("div");
       divOutils.classList.add("outils");
@@ -174,7 +173,7 @@ function addProductToCart(i) {
   let productToAdd = { ...availableProducts[i] }
   //productToAdd.quantity = parseInt(nombreOfart[i].value);
 
-  if (cart == "") {
+  if (cart.length == 0) {
     cart.push(productToAdd)
   } else {
     for (let i = 0; i < cart.length; i++) {
@@ -332,6 +331,7 @@ function displayAside() {
   button.textContent = "VALIDER PAYEMENT";
 
 
+
   divPayement.append(fph2, button);
   divCar.append(divPanier, divPayement);
   aside.append(h2, divCar);
@@ -339,6 +339,11 @@ function displayAside() {
   let main = document.querySelector("main");
   main.append(aside);
   asidePresent = true;
+
+  let buttonSelect = document.querySelector("#faut-payer button")
+  buttonSelect.addEventListener("click", function () {
+    window.location = 'panier.html'
+  });
 }
 
 
@@ -352,4 +357,110 @@ function panierScrollbar() {
   }
 }
 displayAvailableProducts()
+
+
+
+
+
+/* Function formulaire payement */
+function checkNumber(event) {
+
+  var aCode = event.which ? event.which : event.keyCode;
+
+  let card = document.querySelector("#cardNumberText")
+  let cardValue = card.value
+  // card.length
+  if (cardValue.length == 4 || cardValue.length == 11 || cardValue.length == 18) {
+    card.value += " - "
+  }
+  if (aCode > 31 && (aCode < 48 || aCode > 57)) {
+    return false;
+  }
+  return true;
+
+}
+function pageLoad() {
+  let showPassword = document.querySelector("#displayPassword")
+  let passwordShow = false;
+  showPassword.addEventListener("click", function () {
+    if (passwordShow == true) {
+      document.querySelector("#passwordCheck").type = "password";
+      passwordShow = false;
+    } else {
+      document.querySelector("#passwordCheck").type = "text";
+      passwordShow = true;
+    }
+  })
+}
+
+// function asidePerdu() {
+//   let aside = document.createElement("aside");
+//   let h2 = document.createElement("h2");
+//   h2.textContent = "My cart";
+//   let divCar = document.createElement("div")
+//   divCar.classList.add("cartlist");
+//   let divPanier = document.createElement("div")
+//   divPanier.setAttribute("id", "panier")
+
+//   let divPayement = document.createElement("div");
+//   divPayement.setAttribute("id", "faut-payer");
+//   let fph2 = document.createElement("h2");
+//   fph2.textContent = "";
+
+
+//   divPayement.append(fph2);
+//   divCar.append(divPanier, divPayement);
+//   aside.append(h2, divCar);
+
+//   let main = document.querySelector("#payementDiv");
+//   main.append(aside);
+// }
+
+
+// function cartInPayment() {
+//   asidePerdu();
+//   for (let k = 0; k < cart.length; k++) {
+//     //nombreArticlePanier = document.querySelectorAll(".quantity");
+//     let div = document.createElement("div");
+//     div.classList.add("ligne");
+//     let div2 = document.createElement("div");
+//     div2.classList.add("article");
+//     let panier = `
+//       <div class="article">
+//       <img src="imgsrc" alt="imgalt"
+//       <div class="refPrix">
+//         <div>
+//           <span>Ref : "refPrix"</span>
+//         </div>
+//         <div>
+//           <span>"prix €"</span>
+//           <input class="quantity" type="number" value="quantité" min="1" max="99" maxlength="3">
+//         </div>
+//       </div>
+//       </div>
+//       <span class="cubePrice">"calcul prix€"</span>
+//   `
+//     div.innerHTML = panier;
+
+//     /*creation du button Supprimer avec image et insert it/them inside divElement ligne_________________*/
+//     let deleteBtn = document.createElement("button");
+//     deleteBtn.setAttribute("alt", "supprimer l'article du panier");
+//     let benImg = document.createElement("img");
+//     benImg.setAttribute("src", "./assets/poubelle.webp");
+//     deleteBtn.append(benImg);
+//     div.append(deleteBtn);
+//     deleteBtn.addEventListener("click", function () {
+//       deleteProduct(k);
+//     });
+
+//     asideElement.append(div);
+
+//     let selecteur = document.querySelectorAll(".article .refPrix div input")
+//     selecteur[k].addEventListener("change", function () {
+//       refreshValue(k)
+//     });
+//     panierScrollbar()
+//   }
+// }
+
 

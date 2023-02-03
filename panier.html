@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<header>
+    <div class="banner">
+        <div>
+            <img id="logo" src="./assets/logo-carre-width-220.webp" alt="logo">
+        </div>
+        <h1>La Boîte à Outs</h1>
+        <div></div>
+    </div>
+    <menu type="toolbar">
+        <ul>
+            <li class="produits relatif" onmouseover="displayCategoriesProd()">
+                <a href="#">Produits</a>
+                <!-- <button class="deroulant" type="submit"><img id="chevron"
+                        src="./assets/chevron-onglet.webp"></button> -->
+                <ul class="ul absolu">
+                    <li onmouseover="displayCategoriesProd()" onmouseout="stopDisplayCategories()"><a
+                            href="index.html">Outillage</a></li>
+                    <li onmouseover="displayCategoriesProd()" onmouseout="stopDisplayCategories()"><a
+                            href="#">Quincaillerie</a></li>
+                    <li onmouseover="displayCategoriesProd()" onmouseout="stopDisplayCategories()"><a
+                            href="#">Gros-oeuvre</a></li>
+                </ul>
+            </li>
+            <li class="panier"><a href="panier.html">Panier</a>
+            </li>
+            <li class="devis"><a href="#">Devis pro</a></li>
+        </ul>
+    </menu>
+</header>
+
+<body onload="pageLoad()">
+    <div id="payementDiv">
+        <div id="position">
+            <form action="">
+                <fieldset>
+                    <legend>
+                        <h2>Payment information</h2>
+                    </legend>
+
+                    <label for="mailadress">Email adress : </label>
+                    <input type="email" name="mail" id="mailadress" placeholder="xxxxxxxxx@outlook.fr" minlength="10"
+                        required autocomplete="off">
+                    <label for="passwordCheck">Password : </label>
+                    <div>
+                        <input type="password" name="password"  id="passwordCheck"
+                            placeholder="freeBanana&91" minlength="6" required>
+                        <span id="displayPassword">👁️‍🗨️</span>
+                    </div>
+                    <label for="cardNumberText">Credit card number: </label>
+                    <input type="text" placeholder="xxxx-xxxx-xxxx-xxxx" autocomplete="off" name="cardNumber"
+                        id="cardNumberText" minlength="25" maxlength="25" required
+                        onkeypress="return checkNumber(event)">
+                    <br>
+                    <div>
+                        <div class="flexColumn">
+                            <label for="monthExpiration">Exp date: </label>
+                            <input type="month" name="cardExpiration" id="monthExpiration" required>
+                        </div>
+                        <div class="flexColumn">
+                            <label for="codeSecurity">CVV: </label>
+                            <input type="text" name="securityCode" id="codeSecurity" autocomplete="off"
+                                placeholder="xxx" minlength="3" maxlength="3" required
+                                onkeypress="return checkNumber(event)">
+                        </div>
+                        <div></div>
+                    </div>
+                    <br>
+                    <div>
+                        <input type="checkbox" name="" id="validateRight" required>
+                        <label for="validateRight">Acceptez les conditions générale de vente du magasin <br><span>* En cas
+                                de
+                                produits abimés ou perdus pendant le transport l'enseigne ne sera pas tenu responsable
+                                et
+                                aucun remboursement ne sera possible. </span> </label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="" id="sendMail">
+                        <label for="sendMail">Accept to receive promotionnal email, news, or update about new
+                            products</label>
+                    </div>
+                    <input type="submit" id="submit" value="Validate">
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</body>
+<script src="script.js"></script>
+
+</html>
