@@ -484,76 +484,86 @@ function pageLoad() {
       passwordShow = true;
     }
   })
+  cartInPayment()
 }
 
-// function asidePerdu() {
-//   let aside = document.createElement("aside");
-//   let h2 = document.createElement("h2");
-//   h2.textContent = "My cart";
-//   let divCar = document.createElement("div")
-//   divCar.classList.add("cartlist");
-//   let divPanier = document.createElement("div")
-//   divPanier.setAttribute("id", "panier")
+function asidePerdu() {
+  let aside = document.createElement("aside");
+  let h2 = document.createElement("h2");
+  h2.textContent = "My cart";
+  let divCar = document.createElement("div")
+  divCar.classList.add("cartlist");
+  let divPanier = document.createElement("div")
+  divPanier.setAttribute("id", "panier")
 
-//   let divPayement = document.createElement("div");
-//   divPayement.setAttribute("id", "faut-payer");
-//   let fph2 = document.createElement("h2");
-//   fph2.textContent = "";
-
-
-//   divPayement.append(fph2);
-//   divCar.append(divPanier, divPayement);
-//   aside.append(h2, divCar);
-
-//   let main = document.querySelector("#payementDiv");
-//   main.append(aside);
-// }
+  let divPayement = document.createElement("div");
+  divPayement.setAttribute("id", "faut-payer");
+  let fph2 = document.createElement("h2");
+  fph2.textContent = "";
 
 
-// function cartInPayment() {
-//   asidePerdu();
-//   for (let k = 0; k < cart.length; k++) {
-//     //nombreArticlePanier = document.querySelectorAll(".quantity");
-//     let div = document.createElement("div");
-//     div.classList.add("ligne");
-//     let div2 = document.createElement("div");
-//     div2.classList.add("article");
-//     let panier = `
-//       <div class="article">
-//       <img src="imgsrc" alt="imgalt"
-//       <div class="refPrix">
-//         <div>
-//           <span>Ref : "refPrix"</span>
-//         </div>
-//         <div>
-//           <span>"prix €"</span>
-//           <input class="quantity" type="number" value="quantité" min="1" max="99" maxlength="3">
-//         </div>
-//       </div>
-//       </div>
-//       <span class="cubePrice">"calcul prix€"</span>
-//   `
-//     div.innerHTML = panier;
+  divPayement.append(fph2);
+  divCar.append(divPanier, divPayement);
+  aside.append(h2, divCar);
 
-//     /*creation du button Supprimer avec image et insert it/them inside divElement ligne_________________*/
-//     let deleteBtn = document.createElement("button");
-//     deleteBtn.setAttribute("alt", "supprimer l'article du panier");
-//     let benImg = document.createElement("img");
-//     benImg.setAttribute("src", "./assets/poubelle.webp");
-//     deleteBtn.append(benImg);
-//     div.append(deleteBtn);
-//     deleteBtn.addEventListener("click", function () {
-//       deleteProduct(k);
-//     });
-
-//     asideElement.append(div);
-
-//     let selecteur = document.querySelectorAll(".article .refPrix div input")
-//     selecteur[k].addEventListener("change", function () {
-//       refreshValue(k)
-//     });
-//     panierScrollbar()
-//   }
-// }
+  let main = document.querySelector("#payementDiv");
+  main.append(aside);
+}
 
 
+function cartInPayment() {
+  asidePerdu();
+  let cart = JSON.parse(localStorage.getItem("cart"));
+  let asideElement = document.querySelector("#panier");
+  for (let k = 0; k < cart.length; k++) {
+    //nombreArticlePanier = document.querySelectorAll(".quantity");
+    let div = document.createElement("div");
+    div.classList.add("ligne");
+    let div2 = document.createElement("div");
+    div2.classList.add("article");
+    let panier = `
+    <div class="article">
+      <img src=${cart[k].imgSrc} alt=${cart[k].imgAlt}>
+      <div class="refPrix">
+        <div>
+          <span>Ref : ${cart[k].ref}</span>
+        </div>
+        <div>
+          <span>${cart[k].price}€</span>
+          <input class="quantity" type="number" value="${cart[k].quantity}" min="1" max="99" maxlength="3">
+        </div>
+      </div>
+    </div>
+    <span class="cubePrice">${(cart[k].quantity * cart[k].price).toFixed(2)}€</span>
+  `
+    div.innerHTML = panier;
+
+    /*creation du button Supprimer avec image et insert it/them inside divElement ligne_________________*/
+    let deleteBtn = document.createElement("button");
+    deleteBtn.setAttribute("alt", "supprimer l'article du panier");
+    let benImg = document.createElement("img");
+    benImg.setAttribute("src", "./assets/poubelle.webp");
+    deleteBtn.append(benImg);
+    div.append(deleteBtn);
+    deleteBtn.addEventListener("click", function () {
+      deleteProduct(k);
+    });
+
+    asideElement.append(div);
+
+    let selecteur = document.querySelectorAll(".article .refPrix div input")
+    selecteur[k].addEventListener("change", function () {
+      refreshValue(k)
+    });
+    panierScrollbar()
+
+
+    let priceH2 = document.querySelector("#faut-payer h2");
+    let totalAmount = 0;
+    let totalArticle = 0;
+
+    totalAmount += cart[k].quantity * cart[k].price;
+    totalArticle += cart[k].quantity;
+    priceH2.innerHTML = "Nombre d'articles dans le panier : " + totalArticle + "<br>Total à payer : " + (totalAmount).toFixed(2) + "€";
+  }
+}
