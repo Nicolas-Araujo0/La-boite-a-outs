@@ -339,6 +339,7 @@ function displayCart() {
 }
 
 function displayDevis() {
+
   let dateDevis = document.querySelector("p>span#date");
   dateDevis.textContent = "--/--/---- ";
   let numberDevis = document.querySelector("h2>#numberDevis");
@@ -376,7 +377,7 @@ function displayDevis() {
   tdMontant.textContent = "Montant TTC à régler: "
   tdTotalPrice.textContent = totalAmount.toFixed(2) + "€";
   tdTotalQty.textContent = totalQty;
-  trContent = "";
+
 }
 
 
