@@ -3,115 +3,157 @@ const availableProducts = [{
   imgSrc: "./assets/screwdriver-electricity.png",
   imgAlt: "tournevis plat",
   price: 15.00,
-  quantity: 1
+  quantity: 1,
+  category: "outillage"
 },
 {
   ref: 24112022,
   imgSrc: "./assets/screwdriver-torque.png",
   imgAlt: "tournevis cruciforme",
   price: 12.00,
-  quantity: 1
+  quantity: 1,
+  category: "outillage"
 },
 {
   ref: 25112022,
   imgSrc: "./assets/adjustable-spanner.webp",
   imgAlt: "clé à mollette réglable",
   price: 25.00,
-  quantity: 1
+  quantity: 1,
+  category: "outillage"
 },
 {
   ref: 26112022,
   imgSrc: "./assets/torx-hex-key-clés-6-pans.webp",
   imgAlt: "clé torx-hex",
   price: 39.99,
-  quantity: 1
+  quantity: 1,
+  category: "outillage"
 },
 {
   ref: 27112022,
   imgSrc: "./assets/vis-different-sizes.webp",
   imgAlt: "vis",
   price: 2.00,
-  quantity: 1
+  quantity: 1,
+  category: "quincaillerie"
 },
 {
   ref: 28112022,
   imgSrc: "./assets/marteau.webp",
   imgAlt: "marteau",
   price: 26.89,
-  quantity: 1
+  quantity: 1,
+  category: "outillage"
 },
 {
   ref: 29112022,
   imgSrc: "./assets/bubble-level.webp",
   imgAlt: "niveau à bulle",
   price: 28.50,
-  quantity: 1
+  quantity: 1,
+  category: "outillage"
 },
 {
   ref: 30112022,
   imgSrc: "./assets/laser-level.webp",
   imgAlt: "niveau à bulle laser",
   price: 43.89,
-  quantity: 1
+  quantity: 1,
+  category: "outillage"
 },
 {
   ref: 31112022,
   imgSrc: "./assets/drill-perceuse.webp",
   imgAlt: "perçeuse",
   price: 75.95,
-  quantity: 1
+  quantity: 1,
+  category: "outillage"
 },
 {
   ref: 32112022,
   imgSrc: "./assets/wood-drill-bit.webp",
   imgAlt: "mèches à bois",
   price: 24.99,
-  quantity: 1
+  quantity: 1,
+  category: "quincaillerie"
 },
 {
   ref: 33112022,
   imgSrc: "./assets/steel-drill-bit.webp",
   imgAlt: "mèches acier",
   price: 26.99,
-  quantity: 1
+  quantity: 1,
+  category: "quincaillerie"
 },
 {
   ref: 34112022,
   imgSrc: "./assets/grinder-meuleuse.webp",
   imgAlt: "meuleuse",
   price: 64.69,
-  quantity: 1
+  quantity: 1,
+  category: "outillage"
 },
 {
   ref: 35112022,
   imgSrc: "./assets/steel-sandpaper.webp",
   imgAlt: "papier de verre acier",
   price: 16.68,
-  quantity: 1
+  quantity: 1,
+  category: "quincaillerie"
 },
 {
   ref: 36112022,
   imgSrc: "./assets/polishing-sandpaper.webp",
   imgAlt: "papier de polissage",
   price: 17.95,
-  quantity: 1
+  quantity: 1,
+  category: "quincaillerie"
 },
 {
   ref: 37112022,
   imgSrc: "./assets/nipper-pince-a-bec.webp",
   imgAlt: "pince à bec",
   price: 16.98,
-  quantity: 1
+  quantity: 1,
+  category: "outillage"
 }
 ];
-/*Gestion du menuDeroulant_______________________________________*/
-let menuDeroulant = document.querySelector("menu>ul li .absolu");
-function displayCategoriesProd() {
-  menuDeroulant.style.display = "block";
+let checkCategory;
+let booleen = false;
+function displayCategory(m) {
+  checkCategory = m;
+  booleen = true;
+  let main = document.querySelector("main");
+  main.style["grid-template-columns"] = "2fr 1fr";
+  let section = document.querySelector("section");
+  section.innerHTML = "";
+
+  for (let j = 0; j < availableProducts.length; j++) {
+    let divOutils = document.createElement("div");
+    divOutils.classList.add("outils");
+    if (availableProducts[j].category == m) {
+      let article = `
+    <h3>Ref: ${availableProducts[j].ref}</h3>
+    <img src= ${availableProducts[j].imgSrc} alt= ${availableProducts[j].imgAlt}>
+    <p class="price">${availableProducts[j].price}€</p>
+    <label for="quantite">Qté: </label>
+    <input class="quantite" type="number" min="1" max="99" value="1" ><br>
+    <button class="addButton" onclick="addProductToCart(${j})">ajouter</button>
+    `// est une autre méthode pour createElement
+
+      divOutils.innerHTML = article;
+      section.append(divOutils);
+
+      let quantityInput = divOutils.querySelector("input")
+      quantityInput.addEventListener("input", function () {
+        availableProducts[j].quantity = parseInt(quantityInput.value);
+      })
+
+    }
+  }
 }
-function stopDisplayCategories() {
-  menuDeroulant.style.display = "none";
-}
+
 
 
 /*Gestion de la searchBar_______________________________________*/
@@ -164,14 +206,11 @@ function displayAvailableProducts() {
 
 
 let cart = [];
-let nombreOfart = [];
-let nombreArticlePanier = [];
+let totalAmount = 0;
 
 function addProductToCart(i) {
 
-  //nombreOfart = document.querySelectorAll(".outils input");
   let productToAdd = { ...availableProducts[i] }
-  //productToAdd.quantity = parseInt(nombreOfart[i].value);
 
   if (cart.length == 0) {
     cart.push(productToAdd)
@@ -187,10 +226,20 @@ function addProductToCart(i) {
       }
     }
   }
-
   availableProducts[i].quantity = 1;
-  displayAvailableProducts()
+
+  if (booleen && checkCategory == "outillage") {
+    displayCategory("outillage");
+  }
+  else if (booleen && checkCategory == "quincaillerie") {
+    displayCategory("quincaillerie");
+  }
+  else {
+    displayAvailableProducts();
+  }
   displayCart();
+  localStorage.setItem("cart", JSON.stringify(cart));
+  localStorage.setItem("totalAmount", JSON.stringify(totalAmount));
 }
 
 function cartAppear() {
@@ -245,7 +294,6 @@ function displayCart() {
     }
     showAnimation = false;
     for (let k = 0; k < cart.length; k++) {
-      //nombreArticlePanier = document.querySelectorAll(".quantity");
       let div = document.createElement("div");
       div.classList.add("ligne");
       let div2 = document.createElement("div");
@@ -284,11 +332,52 @@ function displayCart() {
       selecteur[k].addEventListener("change", function () {
         refreshValue(k)
       });
-      displayTotalAmount()
-      panierScrollbar()
+      displayTotalAmount();
+      panierScrollbar();
     }
   }
 }
+
+function displayDevis() {
+  let dateDevis = document.querySelector("p>span#date");
+  dateDevis.textContent = "--/--/---- ";
+  let numberDevis = document.querySelector("h2>#numberDevis");
+  numberDevis.textContent = 100001;
+  let cart = JSON.parse(localStorage.getItem("cart"));
+  let totalAmount = JSON.parse(localStorage.getItem("totalAmount"));
+  let totalQty = 0;
+  let tBodyElement = document.querySelector("tbody");
+  let tfootElement = document.querySelector("tfoot");
+
+  for (let k = 0; k < cart.length; k++) {
+    let trChild = document.createElement("tr");
+    totalQty += cart[k].quantity;
+
+    let trContent = `
+        <td class="description">${"Référence: " + cart[k].ref + " " + cart[k].imgAlt}</td>
+        <td class="nombreP">${cart[k].quantity}</td>
+        <td class="subTotal">${(cart[k].quantity * cart[k].price).toFixed(2)}€</td>
+      `
+    tBodyElement.append(trChild);
+    trChild.innerHTML = trContent;
+  }
+  let trAnotherChild = document.createElement("tr");
+  let tdMontant = document.createElement("td");
+  let tdTotalQty = document.createElement("td");
+  let tdTotalPrice = document.createElement("td");
+
+  tdMontant.classList.add("montant");
+  tdTotalPrice.classList.add("ttc");
+
+  tfootElement.append(trAnotherChild);
+  trAnotherChild.append(tdMontant);
+  trAnotherChild.append(tdTotalQty);
+  trAnotherChild.append(tdTotalPrice);
+  tdMontant.textContent = "Montant TTC à régler: "
+  tdTotalPrice.textContent = totalAmount.toFixed(2) + "€";
+  tdTotalQty.textContent = totalQty;
+}
+
 
 function refreshValue(k) {
   let selecteur = document.querySelectorAll(".article .refPrix div input");
@@ -300,11 +389,13 @@ function refreshValue(k) {
 function deleteProduct(k) {
   cart.splice(k, 1);
   displayCart();
+  localStorage.setItem("cart", JSON.stringify(cart));
+  localStorage.setItem("totalAmount", JSON.stringify(totalAmount));
 }
 
 function displayTotalAmount() {
   let priceH2 = document.querySelector("#faut-payer h2");
-  let totalAmount = 0;
+  totalAmount = 0;
   let totalArticle = 0;
 
   for (let a = 0; a < cart.length; a++) {

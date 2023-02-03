@@ -26,6 +26,7 @@ header {
   height: auto;
   border: 2px solid rgb(128, 128, 128);
   border-radius: 50%;
+  margin: 10px auto;
 }
 
 .banner {
@@ -54,6 +55,7 @@ menu {
   margin-bottom: 20px;
   width: 80%;
   margin: 0 auto;
+  border-radius: 8px;
 }
 
 menu>ul {
@@ -61,7 +63,7 @@ menu>ul {
   justify-content: space-around;
   align-items: center;
   font-size: 2em;
-  margin: 10px auto;
+  margin: 0 auto;
   width: 80%;
 }
 
@@ -78,6 +80,11 @@ ul a:hover {
 menu>ul>li,
 .absolu>li {
   list-style-type: none;
+}
+
+li.produits:hover .absolu,
+.absolu:hover .absolu {
+  display: block;
 }
 
 .produits,
@@ -116,41 +123,19 @@ menu>ul li .absolu {
   display: none;
   position: absolute;
   text-align: left;
-  top: 43px;
   width: 100%;
   z-index: 1000;
   font-size: 0.8em;
-  box-shadow: 0px 1px 2px;
+  box-shadow: 0px 1px 1px;
   background-color: rgb(197, 196, 196);
   padding-left: 20%;
-  padding-top: 2%;
-  padding-bottom: 2%;
-  transition: 2s;
+}
+
+ul.absolu>li {
+  padding: 0.5em 0;
 }
 
 /* Titre de section et barre de recherche_________________________ */
-/* .header_section {
-  display: flex;
-  justify-content: space-between;
-  box-sizing: border-box;
-  width: 80%;
-  margin: 1% auto;
-}
-
-.header_section>h2,
-input#search,
-input#loupe,
-div {
-  flex: 1;
-  margin: 1%;
-}
-
-.header_section>h2 {
-  text-align: start;
-  font-size: 2em;
-  color: rgb(128, 128, 128);
-} */
-
 #search {
   height: 30px;
 }
@@ -186,17 +171,19 @@ section {
 }
 
 
-#searchTitle{
+#searchTitle {
   display: flex;
   justify-content: space-between;
   padding: 10px;
 }
+
 #searchTitle h2 {
   font-size: 2em;
   /* color: rgb(128, 128, 128); */
   color: rgb(0, 0, 0);
 }
-#searchTitle div{
+
+#searchTitle div {
   display: flex;
 }
 
@@ -222,6 +209,7 @@ section {
   border: 1px solid grey;
   background-color: rgb(197, 196, 196);
   padding: 10px;
+  border-radius: 3%;
 }
 
 .outils img {
@@ -231,7 +219,7 @@ section {
 }
 
 .outils img:hover {
-  scale: 1.5;
+  transform: scale(1.5);
 }
 
 p.price {
@@ -267,7 +255,8 @@ aside {
   z-index: 2;
   width: 470px;
 }
-.scrollBar{
+
+.scrollBar {
   overflow-y: scroll;
   max-height: 450px;
 }
@@ -393,54 +382,64 @@ button>img {
 }
 
 /* Animation cart + shop  */
-.cartAppear{
+.cartAppear {
   position: relative;
   animation: moveright 1s;
 }
-.cartRemove{
+
+.cartRemove {
   position: relative;
   animation: removeright 1s;
 }
-.scale{
+
+.scale {
   left: 10%;
   position: fixed;
   animation: scaleShop 1s;
 }
-.deScale{
+
+.deScale {
   left: 10%;
   position: fixed;
   animation: deScaleShop 1s;
 }
-@keyframes scaleShop{
+
+@keyframes scaleShop {
   from {
     width: 80%;
   }
+
   to {
     width: 121.5%;
   }
 }
-@keyframes deScaleShop{
+
+@keyframes deScaleShop {
   from {
     width: 120%;
   }
+
   to {
     width: 79.5%;
   }
 }
 
-@keyframes moveright{
+@keyframes moveright {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
 }
-@keyframes removeright{
+
+@keyframes removeright {
   from {
     right: 0;
     opacity: 1;
   }
+
   to {
     right: -10%;
     opacity: 0;

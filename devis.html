@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="devistyle.css">
+  <title>Devis</title>
+</head>
+
+<body onload="displayDevis()">
+  <div id="navButton">
+    <button>
+      <h3><a href="index.html">Retour</a></h3>
+    </button>
+    <button>
+      <h3><a href="panier.html">Panier</a></h3>
+    </button>
+    <button>
+      <h3><a href="#">Imprimer</a></h3>
+    </button>
+  </div>
+
+  <table border="1px">
+    <thead>
+      <tr>
+        <th colspan="3"><img id="logo" src="./assets/logo-carre-width-220.webp" alt="logo">
+          <h1>La Boîte à Outs</h1>
+          <address>350 rue de l'Eygala<br>
+            38430 MOIRANS<br>
+            04.58.00.52.57<br> SIRET 3843035058000</address>
+        </th>
+      <tr></tr>
+      <tr></tr>
+      </tr>
+      <tr>
+        <th colspan="3">
+          <h2>DEVIS N°<span id="numberDevis"></span></h2>
+          <p>En date du <span id="date"></span></p>
+        </th>
+      </tr>
+      <tr>
+        <th>Designation des produits</th>
+        <th>Quantité</th>
+        <th>Tarifs</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- <tr>
+        <td class="description">div.ligne + div.innerHTML</td>
+        <td class="nombreP"> cubePrice</td>
+        <td class="subTotal"> totalPrice €</td>
+      </tr> -->
+
+    </tbody>
+    <tfoot>
+      <!-- <tr class="ttc">
+        <td colspan="3">Montant TTC à régler : XXXX, XX €</td>
+      </tr> -->
+    </tfoot>
+  </table>
+
+
+
+  <script src="script.js" async></script>
+</body>
+
+</html>
