@@ -18,22 +18,18 @@
     </div>
     <menu type="toolbar">
         <ul>
-            <li class="produits relatif" onmouseover="displayCategoriesProd()">
-                <a href="#">Produits</a>
+            <li class="produits relatif"><a href="index.html">Produits</a>
                 <!-- <button class="deroulant" type="submit"><img id="chevron"
                         src="./assets/chevron-onglet.webp"></button> -->
                 <ul class="ul absolu">
-                    <li onmouseover="displayCategoriesProd()" onmouseout="stopDisplayCategories()"><a
-                            href="index.html">Outillage</a></li>
-                    <li onmouseover="displayCategoriesProd()" onmouseout="stopDisplayCategories()"><a
-                            href="#">Quincaillerie</a></li>
-                    <li onmouseover="displayCategoriesProd()" onmouseout="stopDisplayCategories()"><a
-                            href="#">Gros-oeuvre</a></li>
+                    <li><a href="#" onclick="displayCategory('outillage')">Outillage</a></li>
+                    <li><a href="#" onclick="displayCategory('quincaillerie')">Quincaillerie</a></li>
+                    <li><a href="#" onclick="displayCategory('gros-oeuvre')">Gros-oeuvre</a></li>
                 </ul>
             </li>
             <li class="panier"><a href="panier.html">Panier</a>
             </li>
-            <li class="devis"><a href="#">Devis pro</a></li>
+            <li class="devis"><a href="devis.html">Devis</a></li>
         </ul>
     </menu>
 </header>
@@ -52,8 +48,8 @@
                         required autocomplete="off">
                     <label for="passwordCheck">Password : </label>
                     <div>
-                        <input type="password" name="password"  id="passwordCheck"
-                            placeholder="freeBanana&91" minlength="6" required>
+                        <input type="password" name="password" id="passwordCheck" placeholder="freeBanana&91"
+                            minlength="6" required>
                         <span id="displayPassword">👁️‍🗨️</span>
                     </div>
                     <label for="cardNumberText">Credit card number: </label>
@@ -77,7 +73,8 @@
                     <br>
                     <div>
                         <input type="checkbox" name="" id="validateRight" required>
-                        <label for="validateRight">Acceptez les conditions générale de vente du magasin <br><span>* En cas
+                        <label for="validateRight">Acceptez les conditions générale de vente du magasin <br><span>* En
+                                cas
                                 de
                                 produits abimés ou perdus pendant le transport l'enseigne ne sera pas tenu responsable
                                 et

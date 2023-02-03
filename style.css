@@ -453,15 +453,14 @@ button>img {
 
 #payementDiv{
   display: flex;
-  margin: 0 15%;
+  margin: 2vh 15%;
   justify-content: space-around;
 }
 #position{
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 45%;
-  height: 70vh;
+  margin-top: 3%;
 
 }
 fieldset{
